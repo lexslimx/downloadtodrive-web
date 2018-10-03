@@ -1,3 +1,29 @@
-<p>
-  download-bar works!
-</p>
+<form>
+    {{errorMessage}}
+  <div class="form-group row">
+    <label for="downloadLinkInput" class="col-sm-2 col-form-label">youtube link</label>
+    <div class="col-sm-8">
+      <input type="url" name="downloadLinkInput" class="form-control form-control-dark w-100" id="downloadLinkInput"
+        [(ngModel)]='downloadLink' placeholder="link to download">
+    </div>
+    <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2">download</button>
+  </div>
+</form>
+<div class="row">
+  <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="thead-inverse">       
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of downloadResult.youtubeDirectVideoLinks; let i = index">
+            <td>{{i}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.videoExtension}}</td>
+            <td>
+              <a href={{item.downloadUrl}} download _blank>download</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
