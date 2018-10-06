@@ -3,6 +3,9 @@
     <li class="nav-item">
       <a class="nav-link active" href="#" (click)="getFilesInStorage()">refresh</a>
     </li>
+    <li class="nav-item" *ngIf="loading">
+      ...loading...
+    </li>>
   </ul>      
 </div>
 <div class="card-columns">

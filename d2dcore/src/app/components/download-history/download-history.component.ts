@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DownloadHistoryService } from './download-history.service';
 import { IBlobFile } from './blobFile';
 import { ChangeDetectorRef } from '@angular/core';
+import { IntervalObservable } from "rxjs/observable/IntervalObservable";
+
 
 @Component({
     selector: 'app-download-history',
@@ -10,21 +12,36 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class DownloadHistoryComponent implements OnInit {
 
-    constructor(private _downloadHistoryService: DownloadHistoryService, private ref: ChangeDetectorRef) { }
+    constructor(private _downloadHistoryService: DownloadHistoryService, private ref: ChangeDetectorRef) {
+        this.alive = true;
+     }
 
     ngOnInit() {
         this.getFilesInStorage();
+        IntervalObservable.create(10000)
+            .takeWhile(() => this.alive)
+            .subscribe(() => {
+                this.getFilesInStorage();
+            });
     }
-
+    alive: boolean = false;
+    loading: boolean = false;
     filesInStorage: IBlobFile[] = [];
     errorMessage: string = '';
     getFilesInStorage() {
+        this.loading = true;
         this._downloadHistoryService.getFilesInStorage("Guest").subscribe(
             results => {
                 this.filesInStorage = results;
                 this.ref.markForCheck();
+                this.loading = false;
             },
-            error => { this.errorMessage = error; }
+            error => { this.errorMessage = error;
+            this.loading = false; }
         );
     }
+
+
+
+
 }
