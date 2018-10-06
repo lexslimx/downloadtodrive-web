@@ -8,7 +8,8 @@ import { TopNavigationComponent } from './components/top-navigation/top-navigati
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { DownloadBarComponent } from './components/download-bar/download-bar.component';
 import { DownloadHistoryComponent } from './components/download-history/download-history.component';
-
+import { VideoPayerComponent } from './components/video-payer/video-payer.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,15 +17,18 @@ import { DownloadHistoryComponent } from './components/download-history/download
     TopNavigationComponent,
     SideBarComponent,
     DownloadBarComponent,
-    DownloadHistoryComponent
+    DownloadHistoryComponent,
+    VideoPayerComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[VideoPayerComponent]
 })
 export class AppModule { }

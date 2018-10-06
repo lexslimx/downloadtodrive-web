@@ -4,13 +4,15 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { IBlobFile } from './blobFile';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DownloadHistoryService {
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient,private modalService: NgbModal) { }
 
   private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders({
@@ -30,5 +32,8 @@ export class DownloadHistoryService {
       .catch(this.handleError);
   }
 
+  openPlayer(videoUrl :string) {    
+    this.modalService.open(videoUrl, { size: 'lg' });
+  }
 
 }

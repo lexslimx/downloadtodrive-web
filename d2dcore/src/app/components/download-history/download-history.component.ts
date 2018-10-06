@@ -3,18 +3,22 @@ import { DownloadHistoryService } from './download-history.service';
 import { IBlobFile } from './blobFile';
 import { ChangeDetectorRef } from '@angular/core';
 import { IntervalObservable } from "rxjs/observable/IntervalObservable";
-
+import { VideoPayerComponent } from '../video-payer/video-payer.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-download-history',
     templateUrl: './download-history.component.html',
-    styleUrls: ['./download-history.component.css']
+    styleUrls: ['./download-history.component.css'],
+    entryComponents: [VideoPayerComponent]    
 })
 export class DownloadHistoryComponent implements OnInit {
 
-    constructor(private _downloadHistoryService: DownloadHistoryService, private ref: ChangeDetectorRef) {
+    constructor(private _downloadHistoryService: DownloadHistoryService,
+        private ref: ChangeDetectorRef,
+        private modalService: NgbModal) {
         this.alive = true;
-     }
+    }
 
     ngOnInit() {
         this.getFilesInStorage();
@@ -36,12 +40,23 @@ export class DownloadHistoryComponent implements OnInit {
                 this.ref.markForCheck();
                 this.loading = false;
             },
-            error => { this.errorMessage = error;
-            this.loading = false; }
+            error => {
+            this.errorMessage = error;
+                this.loading = false;
+            }
         );
     }
 
+    openPlayer(content, videoUrl: string) {
+        this.modalService.open(content, { size: 'lg' });
+    }
 
-
+    open(videoUrl: string) {
+        const modalRef = this.modalService.open(VideoPayerComponent,
+            { centered: true,size: 'lg',windowClass: 'dark-modal' })
+            .componentInstance;
+        modalRef.videoUrl = videoUrl;
+        modalRef.name = 'player';        
+      }
 
 }
