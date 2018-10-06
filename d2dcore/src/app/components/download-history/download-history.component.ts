@@ -19,7 +19,10 @@ export class DownloadHistoryComponent implements OnInit {
     errorMessage: string;
     getFilesInStorage() {
         this._downloadHistoryService.getFilesInStorage("Guest").subscribe(
-            results => { this.filesInStorage = results; },
+            results => {
+                this.filesInStorage = results;
+                console.log(this.filesInStorage);
+            },
             error => { this.errorMessage = error; }
         );
     }
