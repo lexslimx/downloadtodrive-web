@@ -5,11 +5,11 @@
     </li>
     <li class="nav-item" *ngIf="loading">
       ...loading...
-    </li>>
+    </li>
   </ul>      
 </div>
 <div class="card-columns">
-  <div class="card" *ngFor="let item of filesInStorage; let i = index">
+  <div class="card  h-100" *ngFor="let item of filesInStorage; let i = index">
     <div class="card-body text-center">
       <h5 class="card-title">{{item.fileName}}</h5>
       <p class="card-text">size: {{item.size/1048576}} MB</p>
