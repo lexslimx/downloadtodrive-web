@@ -1,9 +1,11 @@
 <div class="card-group">
   <div class="card" *ngFor="let item of filesInStorage; let i = index">
+      <div class="card-footer text-center">
+        <small>PC-1</small>
+      </div>
     <div class="card-body text-center">
       <h5 class="card-title">{{item.fileName}}</h5>
       <p class="card-text">size: {{item.size/1048576}} MB</p>
-
     </div>
     <div class="card-footer">
       <small class="text-muted">
