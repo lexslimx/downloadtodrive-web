@@ -7,8 +7,8 @@
         <input type="url" name="downloadLinkInput" class="form-control form-control-dark" id="downloadLinkInput"
           [(ngModel)]='downloadLink' placeholder="link to download" />
         <div class="input-group-append">
-            <select class="form-control" id="qualityInput" name="qualityInput" [(ngModel)]="selectedVideoQuality" required>
-                <option *ngFor="let item of videoQualityList">
+            <select class="form-control" id="qualityInput" name="qualityInput" [(ngModel)]="selectedDownloadMode" required>
+                <option *ngFor="let item of downloadModeList">
                   {{item}}
                 </option>
               </select>
@@ -30,7 +30,7 @@
           <td>{{item.title}}</td>
           <td>{{item.videoExtension}}</td>
           <td>
-            <a download href="{{item.downloadUrl}}">download</a>
+            <a download href="{{item.downloadUrl}}"> direct download</a>
           </td>
         </tr>
       </tbody>

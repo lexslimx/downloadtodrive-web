@@ -27,14 +27,14 @@ export class DownloadBarComponent implements OnInit {
       "youtubeDirectVideoLinks": []
     };
 
-  videoQualityList: number[] = [360, 480, 720, 1080];
-  selectedVideoQuality: number = 360;
+  downloadModeList: string[] = ["proxy","direct","file"];
+  selectedDownloadMode: string = "proxy";
   ngOnInit() {
   }
   downloadLink: string = '';
 
   download() {
-    this._downloadBarService.getYoutubeLinks(this.downloadLink,this.selectedVideoQuality)
+    this._downloadBarService.getYoutubeLinks(this.downloadLink,this.selectedDownloadMode)
       .subscribe(
         result => {
           this.downloadResult = result;
