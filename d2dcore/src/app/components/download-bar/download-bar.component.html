@@ -1,22 +1,23 @@
 <form>
   {{errorMessage}}
   <div class="form-group row">
-    <label for="downloadLinkInput" class="col-sm-2 col-form-label">youtube link</label>
-    <div class="col-sm-8">
-      <div class="input-group">
-        <input type="url" name="downloadLinkInput" class="form-control form-control-dark" id="downloadLinkInput"
-          [(ngModel)]='downloadLink' placeholder="link to download" />
-        <div class="input-group-append">
-            <select class="form-control" id="qualityInput" name="qualityInput" [(ngModel)]="selectedDownloadMode" required>
-                <option *ngFor="let item of downloadModeList">
-                  {{item}}
-                </option>
-              </select>
-        </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Link</span>
+      </div>
+      <input type="url" name="downloadLinkInput" class="form-control form-control-dark" id="downloadLinkInput"
+        [(ngModel)]='downloadLink' placeholder="url to download" />
+      <div class="input-group-append">
+        <select class="form-control" id="qualityInput" name="qualityInput" [(ngModel)]="selectedDownloadMode" required>
+          <option *ngFor="let item of downloadModeList">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      <div class="input-group-append">
+        <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2">download</button>
       </div>
     </div>
-    <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2">download</button>
-
   </div>
 </form>
 <div class="row">
