@@ -13,24 +13,34 @@ export class DownloadBarComponent implements OnInit {
 
   constructor(private _downloadBarService: DownloadBarService) {
 
-   }
-   errorMessage: string = '';
-   downloadResult : IYoutubeDownloadRequest;
+  }
+  errorMessage: string = '';
+  downloadResult: IYoutubeDownloadRequest =
+    {
+      "youtubeLink": "",
+      "quality": "",
+      "title": "",
+      "userId": "",
+      "owner": "",
+      "isFreeDownloadComplete": null,
+      "isPremiumDownloadComplete": null,
+      "youtubeDirectVideoLinks": []
+    };
 
   ngOnInit() {
   }
-  downloadLink : string = '';
+  downloadLink: string = '';
 
-  download(){
+  download() {
     this._downloadBarService.getYoutubeLinks(this.downloadLink)
-    .subscribe(
-      result=>{
-        this.downloadResult = result;
-      },
-      error=>{ 
-        this.errorMessage = <any>error;
-      }
-    )
+      .subscribe(
+        result => {
+          this.downloadResult = result;
+        },
+        error => {
+          this.errorMessage = <any>error;
+        }
+      )
   }
 
 }

@@ -20,14 +20,12 @@ export class DownloadHistoryService {
     return headers;
   }
 
-  private handleError(err: HttpErrorResponse) {
-    console.log(err.message);
+  private handleError(err: HttpErrorResponse) {    
     return Observable.throw(err.message);
   }
 
   getFilesInStorage(downloadLink: string): Observable<IBlobFile[]> {
-    let headers = this.getHeaders();
-    console.log(headers);
+    let headers = this.getHeaders();    
     return this._httpClient.get<IBlobFile[]>(environment.apiUrl + 'StorageApi?url=' + downloadLink, { headers })
       .catch(this.handleError);
   }

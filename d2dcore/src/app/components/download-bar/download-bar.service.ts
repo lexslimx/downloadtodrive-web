@@ -24,14 +24,11 @@ export class DownloadBarService {
     return headers;
   }
 
-  private handleError(err: HttpErrorResponse) {
-    console.log(err.message);
+  private handleError(err: HttpErrorResponse) {    
     return Observable.throw(err.message);
   }
 
   getYoutubeLinks(downloadLink: string): Observable<IYoutubeDownloadRequest> {
-  //  let headers = this.getHeaders();
-//  console.log(headers);
     return this._httpClient.get<IYoutubeDownloadRequest>(environment.apiUrl + 'YouTubeApi?url=' + downloadLink)
       .catch(this.handleError);
   }
