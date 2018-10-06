@@ -18,7 +18,7 @@ export class DownloadHistoryComponent implements OnInit {
 
     ngOnInit() {
         this.getFilesInStorage();
-        IntervalObservable.create(20000)
+        IntervalObservable.create(10000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 this.getFilesInStorage();

@@ -30,7 +30,7 @@ export class DownloadBarService {
 
   getYoutubeLinks(downloadLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest> {
     return this._httpClient.get<IYoutubeDownloadRequest>(
-      environment.apiUrl + 'YouTubeApi?url=' + downloadLink + "&quality=" + downloadMode)
+      environment.apiUrl + 'YouTubeApi?url=' + downloadLink + "&downloadMode=" + downloadMode)
       .catch(this.handleError);
   }
 
