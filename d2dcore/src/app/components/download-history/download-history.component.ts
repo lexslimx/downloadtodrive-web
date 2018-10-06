@@ -15,11 +15,11 @@ export class DownloadHistoryComponent implements OnInit {
 
   }
 
-  filesInstorage: IBlobFile[];
+  filesInStorage: IBlobFile[];
   errorMessage: string;
   getFilesInStorage(){
     this._downloadHistoryService.getFilesInStorage("Guest").subscribe(
-      results=>{this.filesInstorage = results;},
+      results=>{this.filesInStorage = results;},
       error=>{this.errorMessage = error;}
     );
   }
