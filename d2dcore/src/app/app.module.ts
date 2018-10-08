@@ -10,6 +10,7 @@ import { DownloadBarComponent } from './components/download-bar/download-bar.com
 import { DownloadHistoryComponent } from './components/download-history/download-history.component';
 import { VideoPayerComponent } from './components/video-payer/video-payer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DownloadItemComponent } from './components/download-item/download-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     SideBarComponent,
     DownloadBarComponent,
     DownloadHistoryComponent,
-    VideoPayerComponent
+    VideoPayerComponent,
+    DownloadItemComponent
   ],
   imports: [
     BrowserModule,

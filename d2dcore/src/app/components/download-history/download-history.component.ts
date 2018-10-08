@@ -9,14 +9,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-download-history',
     templateUrl: './download-history.component.html',
-    styleUrls: ['./download-history.component.css'],
-    entryComponents: [VideoPayerComponent]    
+    styleUrls: ['./download-history.component.css']
 })
 export class DownloadHistoryComponent implements OnInit {
 
     constructor(private _downloadHistoryService: DownloadHistoryService,
-        private ref: ChangeDetectorRef,
-        private modalService: NgbModal) {
+        private ref: ChangeDetectorRef) {
         this.alive = true;
     }
 
@@ -41,22 +39,9 @@ export class DownloadHistoryComponent implements OnInit {
                 this.loading = false;
             },
             error => {
-            this.errorMessage = error;
+                this.errorMessage = error;
                 this.loading = false;
             }
         );
     }
-
-    openPlayer(content, videoUrl: string) {
-        this.modalService.open(content, { size: 'lg' });
-    }
-
-    open(videoUrl: string) {
-        const modalRef = this.modalService.open(VideoPayerComponent,
-            { centered: true,size: 'lg',windowClass: 'dark-modal' })
-            .componentInstance;
-        modalRef.videoUrl = videoUrl;
-        modalRef.name = 'player';        
-      }
-
 }

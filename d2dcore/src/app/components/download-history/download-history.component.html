@@ -1,19 +1,4 @@
 <div class="card-group">
-  <div class="card" *ngFor="let item of filesInStorage; let i = index">
-      <div class="card-footer text-center">
-        <small>PC-1</small>
-      </div>
-    <div class="card-body text-center">
-      <h5 class="card-title small">{{item.fileName}}</h5>     
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">
-          <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-              <a href={{item.url}} download class="btn btn-primary"><span class="fa fa-download"></span> {{item.size/1048576 | number:'1.0-2'}} MB</a>
-              <button type="button" (click)="open(item.url)" class="btn btn-secondary">Play</button>
-              <button type="button" class="btn btn-secondary">Delete</button>              
-          </div>        
-      </small>
-    </div>
-  </div>
+  <app-download-item *ngFor="let item of filesInStorage; let i = index" _fileName="{{item.fileName}}" _url="{{item.url}}"  _size="{{item.size}}">
+  </app-download-item>
 </div>
