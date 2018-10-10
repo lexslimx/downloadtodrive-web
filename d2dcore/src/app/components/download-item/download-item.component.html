@@ -1,17 +1,16 @@
-<div class="card" style="max-width:20em">
-  <div class="card-footer text-center">
-    <small>PC-1</small>
-  </div>
-<div class="card-body text-center">
-  <h5 class="card-title small">{{fileName}}</h5>     
-</div>
-<div class="card-footer">
-  <small class="text-muted">
+<li class="list-group-item">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">100%</span>
+    </div>
+    <input type="text" disabled class="form-control" value="{{fileName}}" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
       <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-          <a href={{url}} download class="btn btn-primary"><span class="fa fa-download"></span> {{size/1048576 | number:'1.0-2'}} MB</a>
-          <button type="button" (click)="open(url)" class="btn btn-secondary">Play</button>
-          <button type="button" class="btn btn-secondary">Delete</button>              
-      </div>        
-  </small>
-</div>
-</div>
+        <a href={{url}} download class="btn btn-primary"><span class="fa fa-download"></span>
+          {{size/1048576 | number:'1.0-2'}} MB</a>
+        <button type="button" (click)="open(url)" class="btn btn-secondary">Play</button>
+        <button type="button" class="btn btn-secondary">Delete</button>
+      </div>
+    </div>
+  </div>
+</li>

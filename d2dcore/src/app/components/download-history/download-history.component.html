@@ -1,4 +1,5 @@
-<div class="card-group">
+<ul class="list-group">
   <app-download-item *ngFor="let item of filesInStorage; let i = index" _fileName="{{item.fileName}}" _url="{{item.url}}"  _size="{{item.size}}">
   </app-download-item>
-</div>
+</ul>
+  
