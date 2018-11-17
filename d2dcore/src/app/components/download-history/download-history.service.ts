@@ -12,28 +12,33 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DownloadHistoryService {
 
-  constructor(private _httpClient: HttpClient,private modalService: NgbModal) { }
+  constructor(private _httpClient: HttpClient, private modalService: NgbModal) { }
 
   private getHeaders(): HttpHeaders {
-    let headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',      
+      'Accept': 'application/json'
     });
     return headers;
   }
 
-  private handleError(err: HttpErrorResponse) {    
+  private handleError(err: HttpErrorResponse) {
     return Observable.throw(err.message);
   }
 
   getFilesInStorage(downloadLink: string): Observable<IBlobFile[]> {
-    let headers = this.getHeaders();    
+    const headers = this.getHeaders();
     return this._httpClient.get<IBlobFile[]>(environment.apiUrl + 'StorageApi?url=' + downloadLink, { headers })
       .catch(this.handleError);
   }
 
-  openPlayer(videoUrl :string) {    
+  deleteFile(fileName: string): Observable<Response>
+  {
+    const headers = this.getHeaders();
+    return this._httpClient.post<Response>(environment.apiUrl + 'StorageApi?fileName=' + fileName, {headers})
+    .catch(this.handleError);
+  }
+  openPlayer(videoUrl: string) {
     this.modalService.open(videoUrl, { size: 'lg' });
   }
-
 }

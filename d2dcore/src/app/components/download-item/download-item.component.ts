@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VideoPayerComponent } from '../video-payer/video-payer.component';
+import { DownloadHistoryService } from '../download-history/download-history.service';
 
 //this is a comment to trigger a new release
 
@@ -14,7 +15,7 @@ export class DownloadItemComponent implements OnInit {
   @Input() _fileName: string;
   @Input() _url: string;
   @Input() _size: number;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private _downloadHistoryService: DownloadHistoryService) { }
 
   ngOnInit() {
     this.fileName = this._fileName;
@@ -28,6 +29,17 @@ export class DownloadItemComponent implements OnInit {
 
   openPlayer(content, videoUrl: string) {
     this.modalService.open(content, { size: 'lg' });
+  }
+
+  delete(fileName: string) {
+    this._downloadHistoryService.deleteFile(fileName).subscribe(
+      results => {
+        console.log("success deleted");
+      },
+      error => {
+        console.log("error deleting");
+      }
+    );
   }
 
   open(videoUrl: string) {

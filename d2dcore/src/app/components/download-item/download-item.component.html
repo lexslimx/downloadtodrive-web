@@ -7,8 +7,7 @@
       <a href={{url}} download class="btn btn-primary"><span class="fa fa-download"></span>
         {{size/1048576 | number:'1.0-2'}} MB</a>
       <button type="button" (click)="open(url)" class="btn btn-secondary">Play</button>
-      <button type="button" class="btn btn-secondary">Delete</button>
+      <button type="button" (click)="delete(fileName)" class="btn btn-secondary">Delete</button>
     </div>
-
   </div>
 </div>
