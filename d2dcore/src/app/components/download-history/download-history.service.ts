@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { IBlobFile } from './blobFile';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -12,12 +13,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DownloadHistoryService {
 
-  constructor(private _httpClient: HttpClient, private modalService: NgbModal) { }
+  constructor(private _httpClient: HttpClient, private modalService: NgbModal, private _authService: AuthService) { }
 
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
@@ -32,8 +34,7 @@ export class DownloadHistoryService {
       .catch(this.handleError);
   }
 
-  deleteFile(fileName: string): Observable<Response>
-  {
+  deleteFile(fileName: string): Observable<Response> {
     const headers = this.getHeaders();
     return this._httpClient.post<Response>(environment.apiUrl + 'StorageApi?fileName=' + fileName, {headers})
     .catch(this.handleError);

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx'; 
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/Observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { environment } from '../../../environments/environment';
 import { IYoutubeDownloadRequest } from './downloadLinksResponse';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -14,23 +15,24 @@ import { IYoutubeDownloadRequest } from './downloadLinksResponse';
 })
 export class DownloadBarService {
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient, private _authService: AuthService) { }
 
   private getHeaders(): HttpHeaders {
-    let headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',      
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
 
-  private handleError(err: HttpErrorResponse) {    
+  private handleError(err: HttpErrorResponse) {
     return Observable.throw(err.message);
   }
 
   getYoutubeLinks(downloadLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest> {
     return this._httpClient.get<IYoutubeDownloadRequest>(
-      environment.apiUrl + 'YouTubeApi?url=' + downloadLink + "&downloadMode=" + downloadMode)
+      environment.apiUrl + 'YouTubeApi?url=' + downloadLink + '&downloadMode=' + downloadMode)
       .catch(this.handleError);
   }
 

@@ -20,22 +20,24 @@ const httpOptions = {
 @Injectable()
 export class AuthService implements CanActivate {
 
-  constructor(private _httpClient: HttpClient, private router:Router) {
+  constructor(private _httpClient: HttpClient, private router: Router) {
   }
-
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    //if (this.isAuthenticated()) {
-    //  return true;
-    //}
-    //else {      
-    //  this.router.navigate(['login']);
-    //  return false;
-    //}
-    return true;
-  } 
 
   private _loginUrl = environment.apiUrl + 'account/login';
   private _registrationUrl = environment.apiUrl +  'account/register';
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    // if (this.isAuthenticated()) {
+    //  return true;
+    // };
+    // else {
+    //  this.router.navigate(['login']);
+    //  return false;
+    // }
+    return true;
+  }
+
+
 
 
   public login(user: IUser): Observable<IToken> {
@@ -45,7 +47,7 @@ export class AuthService implements CanActivate {
   }
 
   public getToken(): IToken {
-    var token = <IToken>JSON.parse(localStorage.getItem('token'));
+    const token = <IToken>JSON.parse(localStorage.getItem('token'));
     return token;
   }
 
@@ -54,7 +56,7 @@ export class AuthService implements CanActivate {
   }
 
   logout(): void {
-    // clear token remove user from local storage to log user out   
+    // clear token remove user from local storage to log user out
     localStorage.removeItem('token');
   }
 
@@ -69,12 +71,11 @@ export class AuthService implements CanActivate {
   }
 
   public isAuthenticated(): boolean {
-    let token: IToken = JSON.parse(localStorage.getItem("token"));
+    const token: IToken = JSON.parse(localStorage.getItem('token'));
 
     if (token !== null) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
