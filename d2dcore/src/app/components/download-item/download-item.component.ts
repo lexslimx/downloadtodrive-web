@@ -29,7 +29,6 @@ export class DownloadItemComponent implements OnInit {
     this.size = this._size;
 
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-
     this.hubConnection.on("ReceiveMessage", function (user, message) {
       console.log(<any>message);
     });
