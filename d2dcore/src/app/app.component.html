@@ -2,26 +2,10 @@
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">D2D</a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" role="button">Login</a>
+      <a class="nav-link" [routerLink]="['/login']" role="button">Login</a>
     </li>
   </ul>
 </nav>
 <div class='container-fluid h-100' style="min-height:100%" class="bg-darkmenu">
-  <div class="row" style="padding-top:2%">
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-10">
-      <app-download-bar></app-download-bar>
-    </div>
-    <div class="col-md-1">
-    </div>
-  </div>
-  <div class="row" style="margin-top:1%">
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-10">
-      <app-download-history></app-download-history>
-    </div>
-    <div class="col-md-1">
-    </div>
-  </div>
+  <router-outlet></router-outlet>
+</div>

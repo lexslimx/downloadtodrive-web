@@ -34,8 +34,8 @@ export class AuthService implements CanActivate {
     return true;
   } 
 
-  private _loginUrl = environment.apiUrl + '/account/login';
-  private _registrationUrl = environment.apiUrl +  '/account/register';
+  private _loginUrl = environment.apiUrl + 'account/login';
+  private _registrationUrl = environment.apiUrl +  'account/register';
 
 
   public login(user: IUser): Observable<IToken> {
