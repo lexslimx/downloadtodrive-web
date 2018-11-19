@@ -20,8 +20,10 @@ export class RegisterComponent implements OnInit {
 
   }
   register() {
-    console.log('registering');
-    const result = this._authService.register(this.user);
-    console.log('got' + <any>result);
+  this._authService.register(this.user).subscribe(success => {
+    this.router.navigate(['login']);
+  }, error => {
+    console.log('login error' + <any>error);
+  });
   }
 }

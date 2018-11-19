@@ -9,6 +9,7 @@ import { IToken } from './token';
 import { IUser } from './user';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { HttpResponse } from '@aspnet/signalr';
 
 
 const httpOptions = {
@@ -34,17 +35,10 @@ export class AuthService implements CanActivate {
     return true;
   }
 
-  public login(user: IUser) {
-    return this._httpClient.post(environment.loginUrl, user, httpOptions)
-    .subscribe(
-      data => {
-          console.log('login Request is successful ', data);
-          this.saveToken(<IToken>data);
-      },
-      error => {
-          console.log('Error', error);
-      }
-  );
+  public login(user: IUser): Observable<IToken> {
+    return this._httpClient.post<IToken>(environment.loginUrl, user, httpOptions)
+    .do(e => { this.saveToken(e); })
+    .catch(this.handleError);
   }
 
   public getToken(): IToken {
@@ -65,17 +59,10 @@ export class AuthService implements CanActivate {
     return Observable.throw(err);
   }
 
-
-  public register(user: IUser) {
-    this._httpClient.post(environment.registrationIUrl, user, httpOptions)
-        .subscribe(
-            data => {
-                console.log('POST Request is successful ', data);
-            },
-            error => {
-                console.log('Error', error);
-            }
-        );
+  public register(user: IUser): Observable<Response> {
+    return this._httpClient.post<Response>(environment.registrationIUrl, user, httpOptions)
+      .do(e => { console.log('success registration'); })
+      .catch(this.handleError);
   }
 
   public isAuthenticated(): boolean {

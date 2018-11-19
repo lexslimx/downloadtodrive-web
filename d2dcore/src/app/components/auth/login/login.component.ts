@@ -22,9 +22,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const result = this._authService.login(this.user);
-    console.log('result login ' + <any>result);
-    this.router.navigate(['home']);
+    this._authService.login(this.user)
+    .subscribe(success => {
+      console.log('result login ' + <any>success);
+      this.router.navigate(['home']);
+      },
+      error => {
+        console.log('login error' + <any>error);
+      });
   }
 
 }
