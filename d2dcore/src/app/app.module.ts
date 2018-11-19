@@ -11,6 +11,8 @@ import { DownloadHistoryComponent } from './components/download-history/download
 import { VideoPayerComponent } from './components/video-payer/video-payer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DownloadItemComponent } from './components/download-item/download-item.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DownloadItemComponent } from './components/download-item/download-item.
     DownloadBarComponent,
     DownloadHistoryComponent,
     VideoPayerComponent,
-    DownloadItemComponent
+    DownloadItemComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
