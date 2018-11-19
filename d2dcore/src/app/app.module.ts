@@ -2,9 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { DownloadBarComponent } from './components/download-bar/download-bar.component';
 import { DownloadHistoryComponent } from './components/download-history/download-history.component';
@@ -14,11 +13,12 @@ import { DownloadItemComponent } from './components/download-item/download-item.
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
+import { TopnavigationComponent } from './components/nav/topnavigation/topnavigation.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopNavigationComponent,
     SideBarComponent,
     DownloadBarComponent,
     DownloadHistoryComponent,
@@ -26,13 +26,15 @@ import { HomeComponent } from './components/home/home.component';
     DownloadItemComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    TopnavigationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([      
-      { path: '*', redirectTo: 'home', pathMatch: 'full' },
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      //{ path: '**', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
@@ -42,6 +44,6 @@ import { HomeComponent } from './components/home/home.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[VideoPayerComponent]
+  entryComponents: [VideoPayerComponent]
 })
 export class AppModule { }

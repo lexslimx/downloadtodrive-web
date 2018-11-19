@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DownloadHistoryService } from './download-history.service';
 import { IBlobFile } from './blobFile';
 import { ChangeDetectorRef } from '@angular/core';
-import { IntervalObservable } from "rxjs/observable/IntervalObservable";
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { VideoPayerComponent } from '../video-payer/video-payer.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,11 +13,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DownloadHistoryComponent implements OnInit {
 
+    alive = false;
+    loading = false;
+    filesInStorage: IBlobFile[] = [];
+    errorMessage = '';
     constructor(private _downloadHistoryService: DownloadHistoryService,
         private ref: ChangeDetectorRef) {
         this.alive = true;
     }
-
     ngOnInit() {
         this.getFilesInStorage();
         IntervalObservable.create(10000)
@@ -26,10 +29,7 @@ export class DownloadHistoryComponent implements OnInit {
                 this.getFilesInStorage();
             });
     }
-    alive: boolean = false;
-    loading: boolean = false;
-    filesInStorage: IBlobFile[] = [];
-    errorMessage: string = '';
+
     getFilesInStorage() {
         this.loading = true;
         this._downloadHistoryService.getFilesInStorage("Guest").subscribe(
