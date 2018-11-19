@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  
 })
 export class DownloadHistoryService {
 

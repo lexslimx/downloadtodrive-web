@@ -14,6 +14,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { TopnavigationComponent } from './components/nav/topnavigation/topnavigation.component';
+import { AuthService } from './components/auth/auth.service';
 
 
 @NgModule({
@@ -34,7 +35,6 @@ import { TopnavigationComponent } from './components/nav/topnavigation/topnaviga
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      //{ path: '**', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
@@ -42,7 +42,7 @@ import { TopnavigationComponent } from './components/nav/topnavigation/topnaviga
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [VideoPayerComponent]
 })

@@ -23,9 +23,6 @@ export class AuthService implements CanActivate {
   constructor(private _httpClient: HttpClient, private router: Router) {
   }
 
-  private _loginUrl = environment.apiUrl + 'account/login';
-  private _registrationUrl = environment.apiUrl +  'account/register';
-
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // if (this.isAuthenticated()) {
     //  return true;
@@ -37,13 +34,17 @@ export class AuthService implements CanActivate {
     return true;
   }
 
-
-
-
-  public login(user: IUser): Observable<IToken> {
-    return this._httpClient.post<IToken>(this._loginUrl, user, httpOptions)
-      .do(e => { this.saveToken(e); })
-      .catch(this.handleError);
+  public login(user: IUser) {
+    return this._httpClient.post(environment.loginUrl, user, httpOptions)
+    .subscribe(
+      data => {
+          console.log('login Request is successful ', data);
+          this.saveToken(<IToken>data);
+      },
+      error => {
+          console.log('Error', error);
+      }
+  );
   }
 
   public getToken(): IToken {
@@ -64,10 +65,17 @@ export class AuthService implements CanActivate {
     return Observable.throw(err);
   }
 
+
   public register(user: IUser) {
-    return this._httpClient.post<IToken>(this._registrationUrl, user, httpOptions)
-      .do(e => { this.saveToken(e); })
-      .catch(this.handleError);
+    this._httpClient.post(environment.registrationIUrl, user, httpOptions)
+        .subscribe(
+            data => {
+                console.log('POST Request is successful ', data);
+            },
+            error => {
+                console.log('Error', error);
+            }
+        );
   }
 
   public isAuthenticated(): boolean {

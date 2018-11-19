@@ -12,19 +12,16 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   constructor(private _authService: AuthService, private router: Router) { }
-
-  ngOnInit() {
-
-  }
-
   user: IUser = {
     email: '',
     password: ''
-  }
+  };
+  ngOnInit() {
 
+  }
   register() {
-    this._authService.register(this.user).subscribe(response => {
-      this.router.navigate(['/login']);
-    }, error => { });
+    console.log('registering');
+    const result = this._authService.register(this.user);
+    console.log('got' + <any>result);
   }
 }

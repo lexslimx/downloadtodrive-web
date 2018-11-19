@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://downloadtodriveapi.azurewebsites.net/api/',
-  signalRServer:'https://downloadtodriveapi.azurewebsites.net/api/chatHub'
+  apiUrl: 'http://localhost:19658/api/',
+  signalRServer: 'http://localhost:19658/api/chatHub',
+  loginUrl: 'http://localhost:19658/account/authenticate',
+  registrationIUrl: 'http://localhost:19658/account/register'
 };

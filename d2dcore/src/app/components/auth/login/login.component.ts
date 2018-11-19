@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +21,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-
   login() {
-    this._authService.login(this.user).subscribe(response => {
-      this.router.navigate(['/home']);
-    }, error => {
-        console.log('error with login');
-      });
+    const result = this._authService.login(this.user);
+    console.log('result login ' + <any>result);
+    this.router.navigate(['home']);
   }
 
 }

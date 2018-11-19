@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DownloadHistoryService } from '../download-history/download-history.service';
 import { DownloadBarService } from './download-bar.service';
 import { IYoutubeDownloadRequest } from './downloadLinksResponse';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-download-bar',
@@ -14,27 +15,27 @@ export class DownloadBarComponent implements OnInit {
   constructor(private _downloadBarService: DownloadBarService) {
 
   }
-  errorMessage: string = '';
+  errorMessage = '';
   downloadResult: IYoutubeDownloadRequest =
     {
-      "youtubeLink": "",
-      "quality": "",
-      "title": "",
-      "userId": "",
-      "owner": "",
-      "isFreeDownloadComplete": null,
-      "isPremiumDownloadComplete": null,
-      "youtubeDirectVideoLinks": []
+      'youtubeLink': '',
+      'quality': '',
+      'title': '',
+      'userId': '',
+      'owner': '',
+      'isFreeDownloadComplete': null,
+      'isPremiumDownloadComplete': null,
+      'youtubeDirectVideoLinks': []
     };
-
-  downloadModeList: string[] = ["proxy","direct","file"];
-  selectedDownloadMode: string = "proxy";
+    downloadLink = '';
+  downloadModeList: string[] = ['proxy', 'direct', 'file'];
+  selectedDownloadMode = 'proxy';
   ngOnInit() {
   }
-  downloadLink: string = '';
+
 
   download() {
-    this._downloadBarService.getYoutubeLinks(this.downloadLink,this.selectedDownloadMode)
+    this._downloadBarService.getYoutubeLinks(this.downloadLink, this.selectedDownloadMode)
       .subscribe(
         result => {
           this.downloadResult = result;
@@ -42,7 +43,7 @@ export class DownloadBarComponent implements OnInit {
         error => {
           this.errorMessage = <any>error;
         }
-      )
+      );
   }
 
 }
