@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://downloadtodriveapi.azurewebsites.net/api/'
+  apiUrl: 'https://downloadtodriveapi.azurewebsites.net/api/',
+  signalRServer:'https://downloadtodriveapi.azurewebsites.net/api/chatHub'
 };
