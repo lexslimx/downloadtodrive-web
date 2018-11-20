@@ -28,6 +28,7 @@ export class DownloadHistoryComponent implements OnInit {
             .subscribe(() => {
                 this.getFilesInStorage();
             });
+            console.log('initialized');
     }
 
     getFilesInStorage() {
@@ -37,6 +38,7 @@ export class DownloadHistoryComponent implements OnInit {
                 this.filesInStorage = results;
                 this.ref.markForCheck();
                 this.loading = false;
+                console.log(results);
             },
             error => {
                 this.errorMessage = error;
