@@ -42,15 +42,14 @@ export class AuthService implements CanActivate {
   }
 
   public getToken(): IToken {
-    let tokenString = localStorage.getItem('token');
-    if(tokenString === null){
+    const tokenString = localStorage.getItem('token');
+    if (tokenString === null) {
       return {
-        token: "",
+        token: '',
         expiry: null
       };
     }
     const token = <IToken>JSON.parse(tokenString);
-    console.log(JSON.stringify(token));
     return token;
   }
 
