@@ -34,6 +34,7 @@ import { AuthService } from './components/auth/auth.service';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: '*', redirectTo: 'home', pathMatch: 'full' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
