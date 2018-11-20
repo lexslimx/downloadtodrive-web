@@ -27,8 +27,7 @@ export class DownloadHistoryComponent implements OnInit {
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 this.getFilesInStorage();
-            });
-            console.log('initialized');
+            });            
     }
 
     getFilesInStorage() {
