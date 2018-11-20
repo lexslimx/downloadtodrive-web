@@ -32,7 +32,7 @@ export class DownloadHistoryComponent implements OnInit {
 
     getFilesInStorage() {
         this.loading = true;
-        this._downloadHistoryService.getFilesInStorage("Guest").subscribe(
+        this._downloadHistoryService.getFilesInStorage().subscribe(
             results => {
                 this.filesInStorage = results;
                 this.ref.markForCheck();
