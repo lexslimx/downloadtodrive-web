@@ -4,7 +4,6 @@ import { VideoPayerComponent } from '../video-payer/video-payer.component';
 import { DownloadHistoryService } from '../download-history/download-history.service';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { environment } from '../../../environments/environment';
-//this is a comment to trigger a new release
 
 @Component({
   selector: 'app-download-item',
@@ -18,9 +17,9 @@ export class DownloadItemComponent implements OnInit {
   @Input() _size: number;
   constructor(private modalService: NgbModal, private _downloadHistoryService: DownloadHistoryService) { }
 
-  fileName: string = '';
-  url: string = '';
-  size: number = 0;
+  fileName = '';
+  url = '';
+  size = 0;
   private hubConnection: HubConnection;
 
   ngOnInit() {
@@ -29,7 +28,7 @@ export class DownloadItemComponent implements OnInit {
     this.size = this._size;
 
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-    this.hubConnection.on("ReceiveMessage", function (user, message) {
+    this.hubConnection.on('ReceiveMessage', function (user, message) {
       console.log(<any>message);
     });
 
@@ -45,10 +44,10 @@ export class DownloadItemComponent implements OnInit {
   delete(fileName: string) {
     this._downloadHistoryService.deleteFile(fileName).subscribe(
       results => {
-        console.log("success deleted");
+        console.log('success deleted');
       },
       error => {
-        console.log("error deleting");
+        console.log('error deleting');
       }
     );
   }
@@ -63,7 +62,7 @@ export class DownloadItemComponent implements OnInit {
 
   public sendMessage(): void {
     this.hubConnection
-      .invoke('SendMessage',"user - client", "client Message")
+      .invoke('SendMessage', 'user - client', 'client Message')
       .catch(err => console.error(err));
   }
 

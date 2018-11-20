@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:5000/api/',
-  signalRServer: 'http://localhost:5000/api/chatHub',
+  signalRServer: 'http://localhost:5000/chatHub',
   loginUrl: 'http://localhost:5000/account/authenticate',
   registrationIUrl: 'http://localhost:5000/account/register'
 };
