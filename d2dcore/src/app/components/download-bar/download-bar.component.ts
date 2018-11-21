@@ -3,6 +3,8 @@ import { DownloadHistoryService } from '../download-history/download-history.ser
 import { DownloadBarService } from './download-bar.service';
 import { IYoutubeDownloadRequest } from './downloadLinksResponse';
 import { AuthService } from '../auth/auth.service';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-download-bar',
@@ -13,8 +15,8 @@ import { AuthService } from '../auth/auth.service';
 export class DownloadBarComponent implements OnInit {
 
   constructor(private _downloadBarService: DownloadBarService) {
-
   }
+  private hubConnection: HubConnection;
   errorMessage = '';
   downloadResult: IYoutubeDownloadRequest =
     {
@@ -27,12 +29,20 @@ export class DownloadBarComponent implements OnInit {
       'isPremiumDownloadComplete': null,
       'youtubeDirectVideoLinks': []
     };
-    downloadLink = '';
+  downloadLink = '';
   downloadModeList: string[] = ['proxy', 'direct', 'file'];
   selectedDownloadMode = 'proxy';
+  
   ngOnInit() {
-  }
+    this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
+    this.hubConnection.on('ReceiveMessage', function (user, message) {
+      console.log(<any>message);
+    });
 
+    this.hubConnection.start().catch(function (err) {
+      return console.error(err.toString());
+    });
+  }
 
   download() {
     this._downloadBarService.getYoutubeLinks(this.downloadLink, this.selectedDownloadMode)
@@ -46,4 +56,9 @@ export class DownloadBarComponent implements OnInit {
       );
   }
 
+  public sendMessage(): void {
+    this.hubConnection
+      .invoke('SendMessage', 'user - client', 'client Message')
+      .catch(err => console.error(err));
+  }
 }

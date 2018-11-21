@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VideoPayerComponent } from '../video-payer/video-payer.component';
 import { DownloadHistoryService } from '../download-history/download-history.service';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-download-item',
@@ -20,21 +18,11 @@ export class DownloadItemComponent implements OnInit {
   fileName = '';
   url = '';
   size = 0;
-  private hubConnection: HubConnection;
 
   ngOnInit() {
     this.fileName = this._fileName;
     this.url = this._url;
     this.size = this._size;
-
-    this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-    this.hubConnection.on('ReceiveMessage', function (user, message) {
-      console.log(<any>message);
-    });
-
-    this.hubConnection.start().catch(function (err) {
-      return console.error(err.toString());
-    });
   }
 
   openPlayer(content, videoUrl: string) {
@@ -60,10 +48,6 @@ export class DownloadItemComponent implements OnInit {
     modalRef.name = 'player';
   }
 
-  public sendMessage(): void {
-    this.hubConnection
-      .invoke('SendMessage', 'user - client', 'client Message')
-      .catch(err => console.error(err));
-  }
+
 
 }
