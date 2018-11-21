@@ -39,7 +39,7 @@ import { AuthService } from './components/auth/auth.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
-      ]),
+      ], { useHash: true }),
     FormsModule,
     NgbModule
   ],
