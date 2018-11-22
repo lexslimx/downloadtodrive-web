@@ -33,7 +33,7 @@ export class DownloadBarService {
   getYoutubeLinks(downloadLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest> {
     const headers = this.getHeaders();
     return this._httpClient.get<IYoutubeDownloadRequest>(
-      environment.apiUrl + 'YouTubeApi?url=' + downloadLink + '&downloadMode=' + downloadMode, { headers })
+      environment.apiUrl + 'YouTubeApi?url=' + downloadLink , { headers })
       .catch(this.handleError);
   }
 
