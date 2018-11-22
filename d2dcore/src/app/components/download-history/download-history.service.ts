@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
-  providedIn: 'root'  
+  providedIn: 'root'
 })
 export class DownloadHistoryService {
 
@@ -36,7 +36,7 @@ export class DownloadHistoryService {
 
   deleteFile(fileName: string): Observable<Response> {
     const headers = this.getHeaders();
-    return this._httpClient.post<Response>(environment.apiUrl + 'StorageApi?fileName=' + fileName, {headers})
+    return this._httpClient.post<Response>(environment.apiUrl + 'StorageApi?fileName=' + fileName, {}, {headers})
     .catch(this.handleError);
   }
   openPlayer(videoUrl: string) {

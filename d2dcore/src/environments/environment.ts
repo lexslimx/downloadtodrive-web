@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://d2dcoreapi.azurewebsites.net/api/',
-  signalRServer: 'https://d2dcoreapi.azurewebsites.net/chatHub',
-  loginUrl: 'https://d2dcoreapi.azurewebsites.net/account/authenticate',
-  registrationIUrl: 'https://d2dcoreapi.azurewebsites.net/account/register'
+  apiUrl: 'http://localhost:5000/api/',
+  signalRServer: 'http://localhost:5000/chatHub',
+  loginUrl: 'http://localhost:5000/account/authenticate',
+  registrationIUrl: 'http://localhost:5000/account/register'
 };
