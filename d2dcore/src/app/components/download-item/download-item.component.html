@@ -1,13 +1,20 @@
-<div class="card">
-  <div class="card-header">
-    <span class="input-group-text">{{fileName}}</span>
-  </div>
-  <div class="card-footer small">
-    <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-      <a href={{url}} download class="btn btn-primary"><span class="fa fa-download"></span>
-        {{size/1048576 | number:'1.0-2'}} MB</a>
-      <button type="button" (click)="open(url)" class="btn btn-secondary">Play</button>
-      <button type="button" (click)="delete(fileName)" class="btn btn-secondary">Delete</button>
+<form>
+  <div class="form-group row">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <a href={{url}} download class="btn btn-primary"><span class="fa fa-download"></span>
+         </a>
+      </div>
+      <div class="input-group-prepend">
+          <button type="button" (click)="open(url)" class="btn btn-secondary"><span class="fa fa-play"></span></button>
+        </div>
+      <div class="input-group-prepend">
+        <button type="button" (click)="delete(fileName)" class="btn btn-secondary"><span class="fa fa-trash"></span></button>
+      </div>  
+      <input type="url" name="downloadLinkInput" class="form-control form-control-dark" value="{{fileName}}" disabled />
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-secondary"> {{size/1048576 | number:'1.0-2'}} MB</button>
+      </div>
     </div>
   </div>
-</div>
+</form>
