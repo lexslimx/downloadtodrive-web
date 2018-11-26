@@ -15,8 +15,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HomeComponent } from './components/home/home.component';
 import { TopnavigationComponent } from './components/nav/topnavigation/topnavigation.component';
 import { AuthService } from './components/auth/auth.service';
-
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

@@ -5,6 +5,7 @@ import { IYoutubeDownloadRequest } from './downloadLinksResponse';
 import { AuthService } from '../auth/auth.service';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { environment } from '../../../environments/environment';
+declare let alertify: any;
 
 @Component({
   selector: 'app-download-bar',
@@ -18,6 +19,7 @@ export class DownloadBarComponent implements OnInit {
   }
   private hubConnection: HubConnection;
   errorMessage = '';
+
   downloadResult: IYoutubeDownloadRequest =
     {
       'youtubeLink': '',
@@ -32,11 +34,12 @@ export class DownloadBarComponent implements OnInit {
   downloadLink = '';
   downloadModeList: string[] = ['proxy', 'direct', 'file'];
   selectedDownloadMode = 'proxy';
-  
+
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
     this.hubConnection.on('ReceiveMessage', function (user, message) {
       console.log(<any>message);
+      alertify.notify(<any>message, 'success', 5, function() {  console.log('dismissed'); });
     });
 
     this.hubConnection.start().catch(function (err) {
