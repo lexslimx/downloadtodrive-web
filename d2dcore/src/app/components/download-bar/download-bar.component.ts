@@ -39,7 +39,8 @@ export class DownloadBarComponent implements OnInit {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
     this.hubConnection.on('ReceiveMessage', function (user, message) {
       console.log(<any>message);
-      alertify.notify(<any>message, 'success', 5, function() {  console.log('dismissed'); });
+      alertify.dismissAll();
+      alertify.notify(<any>message, 'success', 10, function() {  console.log('dismissed'); });
     });
 
     this.hubConnection.start().catch(function (err) {
