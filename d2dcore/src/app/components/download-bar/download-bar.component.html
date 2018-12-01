@@ -22,15 +22,10 @@
 </form>
  <form>   
   <div class="form-group row">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <a href={{url}} download class="btn btn-primary">
-          https://www.youtube.com/watch?v=ygVX1z6tDGI
-        </a>
-      </div>        
+    <div class="input-group">      
       <ngb-progressbar class="form-control" type="success" [value]="25"></ngb-progressbar>
       <div class="input-group-append">
-        <button type="submit" class="btn btn-secondary"> 15 %</button>
+        <button type="submit" class="btn btn-secondary"> {{progressCounter}} %</button>
       </div>
     </div>
   </div>

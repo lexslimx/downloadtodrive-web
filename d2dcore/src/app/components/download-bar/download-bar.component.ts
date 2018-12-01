@@ -19,7 +19,7 @@ export class DownloadBarComponent implements OnInit {
   }
   private hubConnection: HubConnection;
   errorMessage = '';
-
+  progressCounter: number;
   downloadResult: IYoutubeDownloadRequest =
     {
       'youtubeLink': '',
@@ -38,8 +38,8 @@ export class DownloadBarComponent implements OnInit {
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
     this.hubConnection.on('ReceiveMessage', function (user, message) {
-      alertify.dismissAll();
-      alertify.notify(<any>message, 'success', 10, function() {  console.log('dismissed'); });
+      alertify.notify(<any>message, 'success', 2, function() { });
+      this.progressCounter = this.progressCounter + 1;
     });
 
     this.hubConnection.start().catch(function (err) {
