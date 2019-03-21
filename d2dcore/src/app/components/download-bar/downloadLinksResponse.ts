@@ -1,13 +1,18 @@
 import { IYoutubeDirectDownloadLink } from "./youtubeDirectDownloadLink";
 
-export interface IYoutubeDownloadRequest
-{
-    "youtubeLink": string;
-    "quality": string;
-    "title": string;
-    "userId": string;
-    "owner": string;
-    "isFreeDownloadComplete": null,
-    "isPremiumDownloadComplete": null,
-    "youtubeDirectVideoLinks": IYoutubeDirectDownloadLink[]
+export interface IYoutubeDownloadRequest {
+  "title": string,
+  "webSite": number,
+  "uri": string,
+  "formatCode": number,
+  "isEncrypted": boolean,
+  "is3D": boolean,
+  "isAdaptive": boolean,
+  "adaptiveKind": number,
+  "audioBitrate": number,
+  "resolution": number,
+  "format": number,
+  "audioFormat": number,
+  "fileExtension": string,
+  "fullName": string
 }

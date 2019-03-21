@@ -20,23 +20,6 @@
     </div>
   </div>
 </form>
-<!-- 
-<form>
-    <div class="form-group row">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <p>asdf</p>
-        </div>
-        <ngb-progressbar class="form-control" type="success" [value]="25"></ngb-progressbar>
-        <div class="input-group-append">
-          <button type="submit" class="btn btn-secondary"> {{progressCounter}} %</button>
-        </div>
-      </div>
-    </div>
-  </form>
-
-  -->
-
 
 <div class="row">
   <div class="table-responsive">
@@ -44,12 +27,12 @@
       <thead class="thead-inverse">
       </thead>
       <tbody>
-        <tr *ngFor="let item of downloadResult.youtubeDirectVideoLinks; let i = index">
+        <tr *ngFor="let item of downloadResult; let i = index">
           <td>{{i}}</td>
           <td>{{item.title}}</td>
-          <td>{{item.videoExtension}}</td>
+          <td>{{item.fileExtension}}</td>
           <td>
-            <a href="{{item.downloadUrl}}" download> direct download</a>
+            <a href="{{item.uri}}" download> direct download</a>
           </td>
         </tr>
       </tbody>

@@ -1,13 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\d2dcore",
-    "\\d2dcore\\src",
     "\\d2dcore\\src\\app",
     "\\d2dcore\\src\\app\\components",
     "\\d2dcore\\src\\app\\components\\auth",
     "\\d2dcore\\src\\app\\components\\auth\\register"
   ],
-  "SelectedNode": "\\d2dcore\\src\\app\\components\\auth\\auth.service.ts",
   "PreviewInSolutionExplorer": false
 }

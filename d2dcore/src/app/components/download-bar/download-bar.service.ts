@@ -20,8 +20,8 @@ export class DownloadBarService {
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' +  this._authService.getToken().token
+      'Accept': 'application/json'
+      //'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
@@ -30,10 +30,10 @@ export class DownloadBarService {
     return Observable.throw(err.message);
   }
 
-  getYoutubeLinks(downloadLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest> {
+  getYoutubeLinks(youtubeLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest[]> {
     const headers = this.getHeaders();
-    return this._httpClient.get<IYoutubeDownloadRequest>(
-      environment.apiUrl + 'YouTubeApi?url=' + downloadLink , { headers })
+    return this._httpClient.post<IYoutubeDownloadRequest[]>(
+      environment.ytServiceUrl, { "youtubeLink": youtubeLink} , { headers })
       .catch(this.handleError);
   }
 

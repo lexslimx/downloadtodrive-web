@@ -3,5 +3,6 @@ export const environment = {
   apiUrl: 'https://d2dcoreapi.azurewebsites.net/api/',
   signalRServer: 'https://d2dcoreapi.azurewebsites.net/chatHub',
   loginUrl: 'https://d2dcoreapi.azurewebsites.net/account/authenticate',
-  registrationIUrl: 'https://d2dcoreapi.azurewebsites.net/account/register'
+  registrationIUrl: 'https://d2dcoreapi.azurewebsites.net/account/register',
+  ytServiceUrl: 'https://downloadtodriveyt.azurewebsites.net/api/YtFunction'
 };

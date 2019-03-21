@@ -20,17 +20,7 @@ export class DownloadBarComponent implements OnInit {
   private hubConnection: HubConnection;
   errorMessage = '';
   progressCounter = 50;
-  downloadResult: IYoutubeDownloadRequest =
-    {
-      'youtubeLink': '',
-      'quality': '',
-      'title': '',
-      'userId': '',
-      'owner': '',
-      'isFreeDownloadComplete': null,
-      'isPremiumDownloadComplete': null,
-      'youtubeDirectVideoLinks': []
-    };
+  downloadResult: IYoutubeDownloadRequest[];    
   downloadLink = '';
   downloadModeList: string[] = ['proxy', 'direct', 'file'];
   selectedDownloadMode = 'proxy';
@@ -43,9 +33,9 @@ export class DownloadBarComponent implements OnInit {
       this.progressCounter = this.progressCounter + 1;
     });
 
-    this.hubConnection.start().catch(function (err) {
-      return console.error(err.toString());
-    });
+    //this.hubConnection.start().catch(function (err) {
+    //  return console.error(err.toString());
+    //});
   }
 
   download() {
