@@ -19,11 +19,10 @@ export class DownloadBarComponent implements OnInit {
   }
   private hubConnection: HubConnection;
   errorMessage = '';
+  downloadInProgress = false;
   progressCounter = 50;
   downloadResult: IYoutubeDownloadRequest[];    
   downloadLink = 'https://www.youtube.com/watch?v=VDJS7w1JdlQ';
-  downloadModeList: string[] = ['proxy', 'direct', 'file'];
-  selectedDownloadMode = 'proxy';
 
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
@@ -39,13 +38,16 @@ export class DownloadBarComponent implements OnInit {
   }
 
   download() {
-    this._downloadBarService.getYoutubeLinks(this.downloadLink, this.selectedDownloadMode)
+    this.downloadInProgress = true;
+    this._downloadBarService.getYoutubeLinks(this.downloadLink)
       .subscribe(
         result => {
           this.downloadResult = result;
+          this.downloadInProgress = false;
         },
         error => {
           this.errorMessage = <any>error;
+          this.downloadInProgress = false;
         }
       );
   }

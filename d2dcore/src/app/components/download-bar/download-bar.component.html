@@ -8,34 +8,25 @@
       <input type="url" name="downloadLinkInput" class="form-control form-control-dark" id="downloadLinkInput"
         [(ngModel)]='downloadLink' placeholder="url to download" />
       <div class="input-group-append">
-        <select class="form-control" id="qualityInput" name="qualityInput" [(ngModel)]="selectedDownloadMode" required>
-          <option *ngFor="let item of downloadModeList">
-            {{item}}
-          </option>
-        </select>
-      </div>
-      <div class="input-group-append">
-        <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2">download</button>
+        <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2" [disabled]="downloadInProgress">
+        <span *ngIf="downloadInProgress" class="fa fa-spinner fa-spin">
+          </span>
+            download
+        </button>
       </div>
     </div>
   </div>
 </form>
 
 <div class="row">
-  <div class="table-responsive">
-    <table class="table">
-      <thead class="thead-inverse">
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of downloadResult; let i = index">
-          <td>{{i}}</td>
-          <td>{{item.title}}</td>
-          <td>{{item.fileExtension}}</td>
-          <td>
-            <a href="{{item.uri}}" download="download" target="_blank"> direct download</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <ul class="list-group" *ngFor="let item of downloadResult; let i = index" style="width:100% !important;">
+    <li class="list-group-item" style="border-style:none !important">
+      {{item.title}}{{item.fileExtension}}
+      <div class="btn-group pull-right" role="group">        
+         <a href="{{item.uri}}" download class="btn btn-sm btn-primary"><span class="fa fa-download"></span></a>
+        <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-cloud-download"></span></button>
+        <button type="button" class="btn btn-sm btn-secondary"><span class="fa fa-save"></span></button>
+      </div>
+    </li>    
+  </ul>
 </div>

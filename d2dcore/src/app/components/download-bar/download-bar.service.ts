@@ -30,7 +30,7 @@ export class DownloadBarService {
     return Observable.throw(err.message);
   }
 
-  getYoutubeLinks(youtubeLink: string, downloadMode: string): Observable<IYoutubeDownloadRequest[]> {
+  getYoutubeLinks(youtubeLink: string): Observable<IYoutubeDownloadRequest[]> {
     const headers = this.getHeaders();
     return this._httpClient.post<IYoutubeDownloadRequest[]>(
       environment.ytServiceUrl, { "youtubeLink": youtubeLink} , { headers })
