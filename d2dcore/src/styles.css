@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 .body,html {  
-     height:100%;
-    min-height:1024px;
+    height:100%;
+    width:100%;
     background-color:#43425D;
+    overflow-x:hidden;
   }
   .bg-darkmenu {
     background-color: #43425D;
@@ -13,4 +14,3 @@
     color: #bbb;
   }
   
-    

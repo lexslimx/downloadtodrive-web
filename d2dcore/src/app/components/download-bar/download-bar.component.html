@@ -23,7 +23,7 @@
 
 <div class="row">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table">
       <thead class="thead-inverse">
       </thead>
       <tbody>
@@ -32,7 +32,7 @@
           <td>{{item.title}}</td>
           <td>{{item.fileExtension}}</td>
           <td>
-            <a href="{{item.uri}}" download> direct download</a>
+            <a href="{{item.uri}}" download="download" target="_blank"> direct download</a>
           </td>
         </tr>
       </tbody>

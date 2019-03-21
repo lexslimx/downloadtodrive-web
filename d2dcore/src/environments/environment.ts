@@ -9,5 +9,5 @@ export const environment = {
   signalRServer: 'https://d2dcoreapi.azurewebsites.net/chatHub',
   loginUrl: 'https://d2dcoreapi.azurewebsites.net/account/authenticate',
   registrationIUrl: 'https://d2dcoreapi.azurewebsites.net/account/register',
-  ytServiceUrl:'http://localhost:7071/api/YtFunction'
+  ytServiceUrl:'https://downloadtodriveyt.azurewebsites.net/api/YtFunction'
 };

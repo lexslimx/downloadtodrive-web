@@ -21,7 +21,7 @@ export class DownloadBarComponent implements OnInit {
   errorMessage = '';
   progressCounter = 50;
   downloadResult: IYoutubeDownloadRequest[];    
-  downloadLink = '';
+  downloadLink = 'https://www.youtube.com/watch?v=VDJS7w1JdlQ';
   downloadModeList: string[] = ['proxy', 'direct', 'file'];
   selectedDownloadMode = 'proxy';
 
