@@ -22,7 +22,7 @@ export class DownloadBarComponent implements OnInit {
   downloadInProgress = false;
   progressCounter = 50;
   downloadResult: IYoutubeDownloadRequest[];    
-  downloadLink = 'https://www.youtube.com/watch?v=VDJS7w1JdlQ';
+  downloadLink = '';
 
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
