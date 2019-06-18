@@ -8,7 +8,7 @@
       <input type="url" name="downloadLinkInput" class="form-control form-control-dark" id="downloadLinkInput"
         [(ngModel)]='downloadLink' placeholder="url to download" />
       <div class="input-group-append">
-        <button type="submit" (click)="download()" class="btn btn-primary COL-SM-2" [disabled]="downloadInProgress">
+        <button type="submit" (click)="download()" class="btn btn-default COL-SM-2" style="background-color: #43425D; color: #ffffff" [disabled]="downloadInProgress">
         <span *ngIf="downloadInProgress" class="fa fa-spinner fa-spin">
           </span>
             download
@@ -20,7 +20,7 @@
 
 <div class="row">
   <ul class="list-group" *ngFor="let item of downloadResult; let i = index" style="width:100% !important;">
-    <li class="list-group-item" style="border-style:none !important">
+    <li class="list-group-item" style="border-style:none !important; padding:0% !important">
       {{item.title}}{{item.fileExtension}}
       <div class="btn-group pull-right" role="group">        
          <a href="{{item.uri}}" download class="btn btn-sm btn-primary"><span class="fa fa-download"></span></a>

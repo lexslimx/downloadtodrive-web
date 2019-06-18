@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 .body,html {  
     height:100%;
-    width:100%;
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    width:100%;  
     overflow-x:hidden;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);    
   }
   .bg-darkmenu {
     background-color: #43425D;
@@ -12,5 +12,8 @@
   .list-group-item {
     background-color: #43425D !important;
     color: #bbb;
+  }
+  .bg-gradient{
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   }
   
