@@ -21,15 +21,13 @@ export class DownloadHistoryComponent implements OnInit {
         private ref: ChangeDetectorRef) {
         this.alive = true;
     }
-    ngOnInit() {
-        /* 
+    ngOnInit() {        
        this.getFilesInStorage();
         IntervalObservable.create(10000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 this.getFilesInStorage();
-            }); 
-            */
+            });             
     }
 
     getFilesInStorage() {
