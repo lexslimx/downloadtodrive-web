@@ -51,6 +51,11 @@ export class DownloadBarComponent implements OnInit {
         }
       );
   }
+  
+  UploadToStorage(video:IYoutubeDownloadRequest){
+    console.log(video);
+    this._downloadBarService.uploadToStorage(video.uri, video.title + video.fileExtension);
+  }
 
   public sendMessage(): void {
     this.hubConnection

@@ -32,9 +32,16 @@ export class DownloadBarService {
 
   getYoutubeLinks(youtubeLink: string): Observable<IYoutubeDownloadRequest[]> {
     const headers = this.getHeaders();
-    return this._httpClient.post<IYoutubeDownloadRequest[]>(
-      environment.ytServiceUrl, { "youtubeLink": youtubeLink} , { headers })
+    return this._httpClient.get<IYoutubeDownloadRequest[]>(
+      environment.ytServiceUrl + "?youtubeLink=" + youtubeLink , { headers })
       .catch(this.handleError);
+  }
+ 
+
+  uploadToStorage(url: string, fileName: string): Observable<string>{
+    const headers = this.getHeaders();
+    return this._httpClient.post<string>(environment.apiUrl + "storage", {"filename": fileName, "sourceUrl": url}, {headers})
+    .catch(this.handleError);
   }
 
 

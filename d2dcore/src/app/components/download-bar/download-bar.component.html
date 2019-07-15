@@ -24,8 +24,9 @@
     <li class="list-group-item" style="border-style:none !important; padding:0% !important">
       {{item.title}}{{item.fileExtension}}
       <div class="btn-group pull-right" role="group">        
+        <span>{{item.resolution}} p</span>
          <a href="{{item.uri}}" download class="btn btn-sm btn-primary"><span class="fa fa-download"></span></a>
-        <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-cloud-download"></span></button>
+        <button type="button" class="btn btn-sm btn-warning" (click)="UploadToStorage(item)" ><span class="fa fa-cloud-download"></span></button>
         <button type="button" class="btn btn-sm btn-secondary"><span class="fa fa-save"></span></button>
       </div>
     </li>    
