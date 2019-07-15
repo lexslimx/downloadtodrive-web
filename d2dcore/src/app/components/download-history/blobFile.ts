@@ -1,6 +1,7 @@
 export interface IBlobFile {
-    "fileName": string;
-    "url": string;
-    "size": string;
-    "owner": string;
+    "videoId": string, 
+    "fileName": string,
+    "sourceUrl": string,
+    "storageUrl": string,
+    "size": number
 }

@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 import { environment } from '../../../environments/environment';
 import { IYoutubeDownloadRequest } from './downloadLinksResponse';
 import { AuthService } from '../auth/auth.service';
+import { HttpResponse } from '@aspnet/signalr';
 
 
 @Injectable({
@@ -20,11 +21,11 @@ export class DownloadBarService {
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
-      //'Authorization': 'Bearer ' +  this._authService.getToken().token
+      'Accept': 'application/json'      
     });
     return headers;
   }
+
 
   private handleError(err: HttpErrorResponse) {
     return Observable.throw(err.message);
@@ -38,9 +39,11 @@ export class DownloadBarService {
   }
  
 
-  uploadToStorage(url: string, fileName: string): Observable<string>{
+  uploadToStorage(url: string, fileName: string): Observable<HttpResponse>{
+    console.log(url);
     const headers = this.getHeaders();
-    return this._httpClient.post<string>(environment.apiUrl + "storage", {"filename": fileName, "sourceUrl": url}, {headers})
+    var data ={"filename": fileName, "sourceUrl": url};
+    return this._httpClient.post<HttpResponse>(environment.apiUrl + "storage", data, {headers})
     .catch(this.handleError);
   }
 

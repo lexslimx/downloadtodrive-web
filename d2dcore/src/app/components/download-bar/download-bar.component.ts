@@ -22,7 +22,7 @@ export class DownloadBarComponent implements OnInit {
   downloadInProgress = false;
   progressCounter = 50;
   downloadResult: IYoutubeDownloadRequest[];    
-  downloadLink = '';
+  downloadLink = 'https://www.youtube.com/watch?v=yTCTvsUknzs';
 
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
@@ -53,8 +53,10 @@ export class DownloadBarComponent implements OnInit {
   }
   
   UploadToStorage(video:IYoutubeDownloadRequest){
-    console.log(video);
-    this._downloadBarService.uploadToStorage(video.uri, video.title + video.fileExtension);
+    console.log(video.title);
+    this._downloadBarService.uploadToStorage(video.uri, video.title + video.fileExtension).subscribe(
+      success=>{ console.log('file sent to storage')},  
+       error=>{ console.log( error)});
   }
 
   public sendMessage(): void {

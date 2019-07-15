@@ -18,8 +18,8 @@ export class DownloadHistoryService {
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' +  this._authService.getToken().token
+      'Accept': 'application/json'
+     // 'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
@@ -30,13 +30,13 @@ export class DownloadHistoryService {
 
   getFilesInStorage(): Observable<IBlobFile[]> {
     const headers = this.getHeaders();
-    return this._httpClient.get<IBlobFile[]>(environment.apiUrl + 'StorageApi', { headers })
+    return this._httpClient.get<IBlobFile[]>(environment.apiUrl + 'Storage', { headers })
       .catch(this.handleError);
   }
 
   deleteFile(fileName: string): Observable<Response> {
     const headers = this.getHeaders();
-    return this._httpClient.post<Response>(environment.apiUrl + 'StorageApi?fileName=' + fileName, {}, {headers})
+    return this._httpClient.post<Response>(environment.apiUrl + 'Storage?fileName=' + fileName, {}, {headers})
     .catch(this.handleError);
   }
   openPlayer(videoUrl: string) {
