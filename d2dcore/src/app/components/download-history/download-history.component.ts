@@ -30,8 +30,7 @@ export class DownloadHistoryComponent implements OnInit {
             });             
     }
 
-    getFilesInStorage() {
-        console.log('fetching files in storage');
+    getFilesInStorage() {        
         this.loading = true;
         this._downloadHistoryService.getFilesInStorage().subscribe(
             results => {
