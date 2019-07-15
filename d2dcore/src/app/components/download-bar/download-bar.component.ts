@@ -52,10 +52,9 @@ export class DownloadBarComponent implements OnInit {
       );
   }
   
-  UploadToStorage(video:IYoutubeDownloadRequest){
-    console.log(video.title);
+  UploadToStorage(video:IYoutubeDownloadRequest){     
     this._downloadBarService.uploadToStorage(video.uri, video.title + video.fileExtension).subscribe(
-      success=>{ console.log('file sent to storage')},  
+      success=>{ console.log(success)},  
        error=>{ console.log( error)});
   }
 

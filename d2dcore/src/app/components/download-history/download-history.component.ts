@@ -22,12 +22,14 @@ export class DownloadHistoryComponent implements OnInit {
         this.alive = true;
     }
     ngOnInit() {
-        this.getFilesInStorage();
+        /* 
+       this.getFilesInStorage();
         IntervalObservable.create(10000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 this.getFilesInStorage();
-            });
+            }); 
+            */
     }
 
     getFilesInStorage() {

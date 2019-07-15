@@ -41,11 +41,17 @@ export class DownloadBarService {
 
   uploadToStorage(url: string, fileName: string): Observable<HttpResponse>{
     console.log(url);
+    console.log(fileName);
     const headers = this.getHeaders();
-    var data ={"filename": fileName, "sourceUrl": url};
+    var data ={
+      "fileName": fileName,
+      "sourceurl": url
+    };
     return this._httpClient.post<HttpResponse>(environment.apiUrl + "storage", data, {headers})
     .catch(this.handleError);
   }
+
+  
 
 
 
