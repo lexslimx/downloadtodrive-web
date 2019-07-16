@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VideoPayerComponent } from '../video-payer/video-payer.component';
 import { DownloadHistoryService } from '../download-history/download-history.service';
+import { staticNever } from 'rxjs-compat/add/observable/never';
 
 @Component({
   selector: 'app-download-item',
@@ -25,10 +26,6 @@ export class DownloadItemComponent implements OnInit {
     this.size = this._size;
   }
 
-  openPlayer(content, videoUrl: string) {
-    this.modalService.open(content, { size: 'lg' });
-  }
-
   delete(fileName: string) {
     this._downloadHistoryService.deleteFile(fileName).subscribe(
       results => {
@@ -42,12 +39,10 @@ export class DownloadItemComponent implements OnInit {
 
   open(videoUrl: string) {
     const modalRef = this.modalService.open(VideoPayerComponent,
-      { centered: true, size: 'lg', windowClass: 'dark-modal' })
+      { centered: true, size: 'lg', windowClass: 'dark-modal', keyboard: false, backdrop: "static" })
       .componentInstance;
-    modalRef.videoUrl = videoUrl;
-    modalRef.name = 'player';
+      modalRef.videoUrl = videoUrl;
+      modalRef.videoTitle = this.fileName;
+      modalRef.name = 'player';
   }
-
-
-
 }

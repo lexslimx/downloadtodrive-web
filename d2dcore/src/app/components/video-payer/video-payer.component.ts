@@ -29,4 +29,7 @@ export class VideoPayerComponent implements OnInit {
   videoUrl: string = "";
   constructor(private modalService: NgbModal) { }
  
+  dismiss(){
+    this.modalService.dismissAll();
+  }
 }
