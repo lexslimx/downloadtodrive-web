@@ -26,15 +26,18 @@ export class DownloadBarComponent implements OnInit {
 
   ngOnInit() {
     this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-    this.hubConnection.on('ReceiveMessage', function (user, message) {
-      alertify.dismissAll();
-      alertify.notify(<any>message, 'success', 20, function() { });
-      this.progressCounter = this.progressCounter + 1;
+
+    this.hubConnection.on('broadcastMessage', function (user, message) {      
+     alertify.notify(<any>message, 'success', 20, function() { });
+     this.progressCounter = this.progressCounter + 1;
     });
 
-    //this.hubConnection.start().catch(function (err) {
-    //  return console.error(err.toString());
-    //});
+    
+ 
+    this.hubConnection.start()    
+    .catch(function (err) {
+      return console.error(err.toString());
+    });
   }
 
   download() {

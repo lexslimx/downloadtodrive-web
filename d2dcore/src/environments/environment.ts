@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://downloadtodriveapi.azurewebsites.net/api/',
-  signalRServer: 'https://d2dcoreapi.azurewebsites.net/chatHub',
+  signalRServer: 'https://downloadtodriveapi.azurewebsites.net/chat',
   loginUrl: 'https://d2dcoreapi.azurewebsites.net/account/authenticate',
   registrationIUrl: 'https://d2dcoreapi.azurewebsites.net/account/register',
   ytServiceUrl:'https://downloadtodriveapi.azurewebsites.net/api/Youtube'
