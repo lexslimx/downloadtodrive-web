@@ -5,6 +5,9 @@ import { ChangeDetectorRef } from '@angular/core';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { VideoPayerComponent } from '../video-payer/video-payer.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { environment } from '../../../environments/environment';
+declare let alertify: any;
 
 @Component({
     selector: 'app-download-history',
@@ -12,36 +15,42 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./download-history.component.css']
 })
 export class DownloadHistoryComponent implements OnInit {
-
+    private hubConnection: HubConnection;
     alive = false;
     loading = false;
     filesInStorage: IBlobFile[] = [];
     errorMessage = '';
-    constructor(private _downloadHistoryService: DownloadHistoryService,
-        private ref: ChangeDetectorRef) {
+    constructor(private _downloadHistoryService: DownloadHistoryService
+        ) {
         this.alive = true;
     }
-    ngOnInit() {        
-       this.getFilesInStorage();
-        IntervalObservable.create(10000)
-            .takeWhile(() => this.alive)
-            .subscribe(() => {
-                this.getFilesInStorage();
-            });             
+    ngOnInit() {
+        this.connectToSignalR();
     }
 
     getFilesInStorage() {        
-        this.loading = true;
         this._downloadHistoryService.getFilesInStorage().subscribe(
             results => {
-                this.filesInStorage = results;
-                this.ref.markForCheck();
-                this.loading = false;
+                this.filesInStorage = results;                                
             },
             error => {
-                this.errorMessage = error;
-                this.loading = false;
+                this.errorMessage = error;                
             }
         );
+    }
+
+    connectToSignalR() {
+        var _self = this;
+        this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
+        this.hubConnection.on('broadcastMessage', function (user, message) {
+            alertify.notify(<any>message, 'success', 10, function () 
+                {
+                    _self.getFilesInStorage();
+             });                        
+        });
+        this.hubConnection.start()
+            .catch(function (err) {
+                return console.error(err.toString());
+            });
     }
 }

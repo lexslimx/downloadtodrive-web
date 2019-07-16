@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DownloadHistoryService } from '../download-history/download-history.service';
 import { DownloadBarService } from './download-bar.service';
 import { IYoutubeDownloadRequest } from './downloadLinksResponse';
-import { AuthService } from '../auth/auth.service';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
-import { environment } from '../../../environments/environment';
-declare let alertify: any;
 
 @Component({
   selector: 'app-download-bar',
@@ -17,7 +12,7 @@ export class DownloadBarComponent implements OnInit {
 
   constructor(private _downloadBarService: DownloadBarService) {
   }
-  private hubConnection: HubConnection;
+ 
   errorMessage = '';
   downloadInProgress = false;
   progressCounter = 50;
@@ -25,19 +20,7 @@ export class DownloadBarComponent implements OnInit {
   downloadLink = '';
 
   ngOnInit() {
-    this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-
-    this.hubConnection.on('broadcastMessage', function (user, message) {      
-     alertify.notify(<any>message, 'success', 20, function() { });
-     this.progressCounter = this.progressCounter + 1;
-    });
-
     
- 
-    this.hubConnection.start()    
-    .catch(function (err) {
-      return console.error(err.toString());
-    });
   }
 
   download() {
@@ -59,11 +42,5 @@ export class DownloadBarComponent implements OnInit {
     this._downloadBarService.uploadToStorage(video.uri, video.title + video.fileExtension).subscribe(
       success=>{ console.log(success)},  
        error=>{ console.log( error)});
-  }
-
-  public sendMessage(): void {
-    this.hubConnection
-      .invoke('SendMessage', 'user - client', 'client Message')
-      .catch(err => console.error(err));
   }
 }
