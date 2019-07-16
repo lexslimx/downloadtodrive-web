@@ -19,7 +19,7 @@ export class DownloadHistoryService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-     // 'Authorization': 'Bearer ' +  this._authService.getToken().token
+      // 'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
@@ -34,10 +34,10 @@ export class DownloadHistoryService {
       .catch(this.handleError);
   }
 
-  deleteFile(fileName: string): Observable<Response> {
+  deleteFile(fileName: string) {
     const headers = this.getHeaders();
-    return this._httpClient.post<Response>(environment.apiUrl + 'Storage?fileName=' + fileName, {}, {headers})
-    .catch(this.handleError);
+    return this._httpClient.request('delete', environment.apiUrl + 'Storage', { headers, body: { 'fileName': fileName } })
+      .catch(this.handleError);
   }
   openPlayer(videoUrl: string) {
     this.modalService.open(videoUrl, { size: 'lg' });
