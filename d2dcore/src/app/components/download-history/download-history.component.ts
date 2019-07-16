@@ -15,26 +15,23 @@ declare let alertify: any;
     styleUrls: ['./download-history.component.css']
 })
 export class DownloadHistoryComponent implements OnInit {
-    private hubConnection: HubConnection;
-    alive = false;
+    private hubConnection: HubConnection;    
     loading = false;
     filesInStorage: IBlobFile[] = [];
     errorMessage = '';
-    constructor(private _downloadHistoryService: DownloadHistoryService
-        ) {
-        this.alive = true;
+    constructor(private _downloadHistoryService: DownloadHistoryService) {        
     }
     ngOnInit() {
         this.connectToSignalR();
     }
 
-    getFilesInStorage() {        
+    getFilesInStorage() {
         this._downloadHistoryService.getFilesInStorage().subscribe(
             results => {
-                this.filesInStorage = results;                                
+                this.filesInStorage = results;
             },
             error => {
-                this.errorMessage = error;                
+                this.errorMessage = error;
             }
         );
     }
@@ -42,11 +39,10 @@ export class DownloadHistoryComponent implements OnInit {
     connectToSignalR() {
         var _self = this;
         this.hubConnection = new HubConnectionBuilder().withUrl(environment.signalRServer).build();
-        this.hubConnection.on('broadcastMessage', function (user, message) {
-            alertify.notify(<any>message, 'success', 10, function () 
-                {
-                    _self.getFilesInStorage();
-             });                        
+        this.hubConnection.on('broadcastMessage', function (message, user) {
+            _self.getFilesInStorage();
+            alertify.notify(<string>message, 'success', 10, function () {               
+            });
         });
         this.hubConnection.start()
             .catch(function (err) {
