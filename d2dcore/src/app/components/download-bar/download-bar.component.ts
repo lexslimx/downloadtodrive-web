@@ -32,10 +32,13 @@ export class DownloadBarComponent implements OnInit {
           this.downloadInProgress = false;
         },
         error => {
-          this.errorMessage = <any>error;
+          this.errorMessage = "sorry, we couldn't get that video.";
           this.downloadInProgress = false;
         }
       );
+  }
+  closeErrorMessage(){
+    this.errorMessage = null;
   }
   
   UploadToStorage(video:IYoutubeDownloadRequest){     
