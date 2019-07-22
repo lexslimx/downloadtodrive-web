@@ -32,7 +32,7 @@ export class DownloadBarComponent implements OnInit {
           this.downloadInProgress = false;
         },
         error => {
-          this.errorMessage = "sorry, we couldn't get that video.";
+          this.errorMessage = "sorry, we couldn't get this video: " + this.downloadLink;
           this.downloadInProgress = false;
         }
       );
