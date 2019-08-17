@@ -18,8 +18,8 @@ export class DownloadHistoryService {
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
-      // 'Authorization': 'Bearer ' +  this._authService.getToken().token
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' +  this._authService.getToken().token
     });
     return headers;
   }
