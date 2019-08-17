@@ -4,7 +4,10 @@
     "\\d2dcore\\src\\app",
     "\\d2dcore\\src\\app\\components",
     "\\d2dcore\\src\\app\\components\\auth",
-    "\\d2dcore\\src\\app\\components\\auth\\register"
+    "\\d2dcore\\src\\app\\components\\auth\\login",
+    "\\d2dcore\\src\\assets",
+    "\\d2dcore\\src\\environments"
   ],
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
