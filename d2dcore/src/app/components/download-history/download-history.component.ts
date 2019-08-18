@@ -22,6 +22,7 @@ export class DownloadHistoryComponent implements OnInit {
   motd: string = '';
 
   constructor(private _downloadHistoryService: DownloadHistoryService) {
+    this.getMotd();
   }
 
   ngOnInit() {
@@ -45,8 +46,7 @@ export class DownloadHistoryComponent implements OnInit {
     this.hubConnection.on('broadcastMessage', function (message, user) {
       _self.getFilesInStorage();
       alertify.notify(<string>message, 'success', 10, function () {
-      });
-      _self.getMotd();
+      });      
     });
     this.hubConnection.start()
       .catch(function (err) {
