@@ -72,12 +72,11 @@ export class AuthService implements CanActivate {
       .catch(this.handleError);
   }
 
-  public isAuthenticated(): boolean {
-    const token: IToken = JSON.parse(localStorage.getItem('token'));
-
-    if (token !== null) {
+  public isAuthenticated() : boolean {
+    if (localStorage.getItem('token')) {
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }

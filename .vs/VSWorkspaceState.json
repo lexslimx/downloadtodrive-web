@@ -1,11 +1,13 @@
 {
   "ExpandedNodes": [
-    "\\d2dcore\\src\\app",
-    "\\d2dcore\\src\\app\\components",
-    "\\d2dcore\\src\\app\\components\\auth",
-    "\\d2dcore\\src\\app\\components\\auth\\login",
+    "",
+    "\\d2dcore",
+    "\\d2dcore\\src\\app\\components\\download-bar",
+    "\\d2dcore\\src\\app\\components\\download-history",
+    "\\d2dcore\\src\\app\\components\\download-item",
     "\\d2dcore\\src\\assets",
     "\\d2dcore\\src\\environments"
   ],
+  "SelectedNode": "\\d2dcore",
   "PreviewInSolutionExplorer": false
 }

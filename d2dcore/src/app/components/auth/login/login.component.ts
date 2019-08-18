@@ -12,7 +12,10 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _authService: AuthService, private router: Router) { }
+  constructor(private _authService: AuthService, private router: Router) {
+    this.IsLoggedIn = this._authService.isAuthenticated();
+    console.log(this.IsLoggedIn);
+  }
   user: IUser = {
     userName: '',
     password: ''
@@ -20,6 +23,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  IsLoggedIn: boolean = false;      
+
 
   login() {
     this._authService.login(this.user)
