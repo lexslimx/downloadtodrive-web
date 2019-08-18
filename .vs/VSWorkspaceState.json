@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\d2dcore",
+    "\\d2dcore\\e2e",
+    "\\d2dcore\\src",
+    "\\d2dcore\\src\\app",
     "\\d2dcore\\src\\app\\components",
-    "\\d2dcore\\src\\app\\components\\auth\\register",
-    "\\d2dcore\\src\\app\\components\\nav\\topnavigation",
+    "\\d2dcore\\src\\app\\components\\download-history",
     "\\d2dcore\\src\\environments"
   ],
-  "SelectedNode": "\\d2dcore\\src",
+  "SelectedNode": "\\d2dcore\\src\\app\\components\\download-history\\download-history.service.ts",
   "PreviewInSolutionExplorer": false
 }

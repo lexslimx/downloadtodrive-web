@@ -36,7 +36,7 @@ export class DownloadHistoryService {
   }
 
   getMotd(): Observable<IJoke> {
-    return this._httpClient.get<IJoke>("http://api.icndb.com/jokes/random?limitTo=[nerdy]")
+    return this._httpClient.get<IJoke>("https://api.icndb.com/jokes/random?limitTo=[nerdy]")
       .catch(this.handleError);
   }
 
