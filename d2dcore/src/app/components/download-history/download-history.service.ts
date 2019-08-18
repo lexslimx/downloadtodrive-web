@@ -6,6 +6,7 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { IBlobFile } from './blobFile';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth/auth.service';
+import { IJoke } from './IJoke';
 
 
 @Injectable({
@@ -31,6 +32,11 @@ export class DownloadHistoryService {
   getFilesInStorage(): Observable<IBlobFile[]> {
     const headers = this.getHeaders();
     return this._httpClient.get<IBlobFile[]>(environment.apiUrl + 'Storage', { headers })
+      .catch(this.handleError);
+  }
+
+  getMotd(): Observable<IJoke> {
+    return this._httpClient.get<IJoke>("http://api.icndb.com/jokes/random?limitTo=[nerdy]")
       .catch(this.handleError);
   }
 

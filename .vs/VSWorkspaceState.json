@@ -2,12 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\d2dcore",
-    "\\d2dcore\\src\\app\\components\\download-bar",
-    "\\d2dcore\\src\\app\\components\\download-history",
-    "\\d2dcore\\src\\app\\components\\download-item",
-    "\\d2dcore\\src\\assets",
+    "\\d2dcore\\src\\app\\components",
+    "\\d2dcore\\src\\app\\components\\auth\\register",
+    "\\d2dcore\\src\\app\\components\\nav\\topnavigation",
     "\\d2dcore\\src\\environments"
   ],
-  "SelectedNode": "\\d2dcore",
+  "SelectedNode": "\\d2dcore\\src",
   "PreviewInSolutionExplorer": false
 }
