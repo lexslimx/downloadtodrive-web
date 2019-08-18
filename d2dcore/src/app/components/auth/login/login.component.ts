@@ -24,18 +24,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  IsLoggedIn: boolean = false;      
-
+  IsLoggedIn: boolean = false;
+  IsBusy: boolean = false;
 
   login() {
+    this.IsBusy = true;
     this._authService.login(this.user)
-    .subscribe(success => {
-      console.log('login success' + <any>success);
+      .subscribe(success => {
+        console.log('login success' + <any>success.token);
+        this.IsBusy = false;
         this.router.navigate(['/home']);
       },
-      error => {
-        console.log('login error' + <any>error);
-      });
-  }
-
+        error => {
+          console.log('login error' + <any>error);
+          this.IsBusy = false;
+        });
+  } 
 }

@@ -17,7 +17,7 @@
           <label for="registrationPasswordConfirmation">Confirm Password</label>
           <input type="password" class="form-control" id="registrationPasswordConfirmation" placeholder="Password">
         </div>-->
-        <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
+        <button type="submit" class="btn btn-primary" (click)="register()">Register <span *ngIf="IsBusy" class="fa fa-spinner fa-spin"></span></button>
         <a [routerLink]="['/login']">or login to your account</a>
       </form>
     </div>

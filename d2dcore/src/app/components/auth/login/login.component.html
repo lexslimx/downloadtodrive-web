@@ -2,7 +2,7 @@
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <div class="card-body">
-      <h4 class="card-title">login</h4>      
+      <h4 class="card-title text-center">login</h4>      
       <form>
         <div class="form-group">
           <label for="loginuserNameInput">Username</label>
@@ -13,7 +13,7 @@
           <label for="loginPasswordInput">Password</label>
           <input type="password" class="form-control" id="loginPasswordInput" name="loginPasswordInput" [(ngModel)]="user.password" required placeholder="Password">
         </div>
-        <button type="button" role="button" *ngIf="!IsLoggedIn" class="btn btn-primary" (click)="login()">Login</button>        
+        <button type="button" role="button" [disabled]="IsBusy" *ngIf="!IsLoggedIn" class="btn btn-primary" (click)="login()">Login <span *ngIf="IsBusy" class="fa fa-spinner fa-spin"></span></button>        
         <a [routerLink]="['/register']">or register for a new account</a>
       </form>
     </div>

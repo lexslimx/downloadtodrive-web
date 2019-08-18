@@ -19,12 +19,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
+  IsBusy: boolean = false;
   register() {
-  this._authService.register(this.user).subscribe(success => {
-    console.log('registration success');
-    this.router.navigate(['login']);
-  }, error => {
-    console.log('registration error' + <any>error);
-  });
+    this.IsBusy = true;
+    this._authService.register(this.user).subscribe(success => {
+      this.IsBusy = false;
+      console.log('registration success');
+      this.router.navigate(['login']);
+    }, error => {
+      this.IsBusy = false;;
+      console.log('registration error' + <any>error);
+    });
   }
 }
