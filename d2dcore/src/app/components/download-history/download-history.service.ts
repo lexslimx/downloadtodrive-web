@@ -42,7 +42,7 @@ export class DownloadHistoryService {
 
   deleteFile(fileName: string) {
     const headers = this.getHeaders();
-    return this._httpClient.request('delete', environment.apiUrl + 'Storage', { headers, body: { 'fileName': fileName } })
+    return this._httpClient.request('delete', environment.apiUrl + 'Storage?fileName=' + fileName, { headers})
       .catch(this.handleError);
   }
   openPlayer(videoUrl: string) {
